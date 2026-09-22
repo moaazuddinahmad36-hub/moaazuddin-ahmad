@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:#050507;color:#f5f5f2;font-family:Inter,system-ui,sans-serif;
+  overflow-x:hidden;
+}
+.scene{min-height:100vh;background:#050507}
+.hero{height:100svh;min-height:680px;position:relative;overflow:hidden}
+.image-wrap{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  overflow:hidden;background:#111;
+}
+.image-wrap img{
+  width:100%;height:100%;object-fit:cover;object-position:center;
+  filter:saturate(.78) contrast(1.08) brightness(.86);
+  transform:scale(1.035);
+  animation:slowZoom 14s ease-in-out infinite alternate;
+}
+@keyframes slowZoom{from{transform:scale(1.035)}to{transform:scale(1.09)}}
+
+.vignette,.grain{position:fixed;inset:0;pointer-events:none;z-index:4}
+.vignette{background:radial-gradient(circle at center,transparent 35%,rgba(0,0,0,.58) 100%)}
+.grain{
+  opacity:.075;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+  mix-blend-mode:screen;
+}
+
+.name{
+  position:absolute;z-index:5;left:7vw;bottom:12vh;
+  text-shadow:0 10px 35px rgba(0,0,0,.65);
+}
+.eyebrow{font-size:11px;letter-spacing:.32em;opacity:.72}
+h1{font-size:clamp(56px,9vw,140px);line-height:.83;font-weight:500;letter-spacing:-.055em;margin-top:16px}
+h1 em{font-family:"Playfair Display",serif;font-weight:500}
+.line{display:block;width:90px;height:1px;background:#fff;opacity:.65;margin-top:28px}
+
+.scroll{
+  position:absolute;z-index:5;right:6vw;bottom:6vh;
+  font-size:10px;letter-spacing:.22em;opacity:.72;
+}
+.scroll span{font-size:18px;margin-left:8px}
+
+.about{
+  min-height:75vh;padding:18vh 10vw;display:grid;align-content:center;
+  background:linear-gradient(180deg,#050507,#0d0d10);
+}
+.tag{font-size:10px;letter-spacing:.3em;opacity:.5;margin-bottom:20px}
+.about h2{font-family:"Playfair Display",serif;font-size:clamp(38px,6vw,82px);font-weight:500;max-width:900px}
+.copy{max-width:560px;color:#a8a8ad;line-height:1.8;margin-top:28px;font-size:16px}
+
+.hair-wind{
+  position:absolute;z-index:3;pointer-events:none;mix-blend-mode:screen;
+  width:38vw;height:3px;border-radius:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);
+  opacity:0;
+  transform-origin:left center;
+}
+.wind-1{top:26%;left:27%;animation:windA 2.9s ease-in-out infinite}
+.wind-2{top:31%;left:25%;animation:windB 3.5s ease-in-out .6s infinite}
+.wind-3{top:36%;left:29%;animation:windA 4.1s ease-in-out 1.2s infinite}
+@keyframes windA{
+  0%,100%{opacity:0;transform:translateX(-15px) rotate(-8deg) scaleX(.7)}
+  45%{opacity:.65;transform:translateX(80px) rotate(-2deg) scaleX(1.15)}
+}
+@keyframes windB{
+  0%,100%{opacity:0;transform:translateX(-10px) rotate(7deg) scaleX(.65)}
+  50%{opacity:.55;transform:translateX(105px) rotate(1deg) scaleX(1.2)}
+}
+
+/* Subtle eyelid illusion. It creates a soft blink without changing the source photo. */
+.blink{
+  position:absolute;z-index:3;left:39%;top:46.2%;width:23%;height:8%;
+  opacity:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(40,24,20,.92),rgba(80,48,38,.82),rgba(40,24,20,.1));
+  border-radius:50%;
+  filter:blur(3px);
+  transform:scaleY(.08);
+  animation:blink 6.5s ease-in-out infinite;
+}
+@keyframes blink{
+  0%,91%,100%{opacity:0;transform:scaleY(.08)}
+  93%{opacity:.58;transform:scaleY(.85)}
+  94.5%{opacity:.58;transform:scaleY(1)}
+  96%{opacity:0;transform:scaleY(.08)}
+}
+
+@media(max-width:700px){
+  .hero{min-height:600px}
+  .name{left:7vw;bottom:13vh}
+  h1{font-size:18vw}
+  .scroll{right:7vw;bottom:5vh}
+  .about{padding:14vh 8vw}
+}
