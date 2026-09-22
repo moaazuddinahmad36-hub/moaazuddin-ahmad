@@ -94,3 +94,29 @@ h1 em{font-family:"Playfair Display",serif;font-weight:500}
   .scroll{right:7vw;bottom:5vh}
   .about{padding:14vh 8vw}
 }
+
+.social{
+  position:absolute;z-index:6;right:6vw;top:6vh;
+}
+.social a{
+  display:inline-flex;align-items:center;gap:10px;
+  color:#fff;text-decoration:none;font-size:11px;
+  letter-spacing:.12em;padding:12px 16px;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:999px;background:rgba(0,0,0,.22);
+  backdrop-filter:blur(12px);
+  transition:.25s ease;
+}
+.social a:hover{
+  background:rgba(255,255,255,.12);
+  border-color:rgba(255,255,255,.6);
+  transform:translateY(-2px);
+}
+.ig-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:#fff;box-shadow:0 0 12px rgba(255,255,255,.8);
+}
+@media(max-width:700px){
+  .social{top:4vh;right:6vw}
+  .social a{font-size:10px;padding:10px 13px}
+}
